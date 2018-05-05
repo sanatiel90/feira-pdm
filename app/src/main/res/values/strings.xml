@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Feira</string>
+    <string name="frutas">Frutas</string>
+    <string name="verduras">Verduras</string>
+    <string name="carnes">Carnes</string>
+    <string name="graos">Grãos</string>
+    <string name="sobre">Sobre</string>
+    <string name="navigation_drawer_open">Drawer Open</string>
+    <string name="navigation_drawer_close">Drawer Close</string>
+</resources>

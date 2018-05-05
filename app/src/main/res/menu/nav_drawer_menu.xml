@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <group android:id="@+id/menu_top"
+      android:checkableBehavior="single">
+
+    <item android:title="@string/frutas"
+          android:id="@+id/nav_item_frutas"
+          android:icon="@drawable/ic_launcher_background"/>
+
+    <item android:title="@string/verduras"
+          android:id="@+id/nav_item_verduras"
+        android:icon="@drawable/ic_launcher_background"/>
+
+
+    <item android:title="@string/carnes"
+        android:id="@+id/nav_item_carnes"
+        android:icon="@drawable/ic_launcher_background"/>
+
+
+    <item android:title="@string/graos"
+          android:id="@+id/nav_item_graos"
+        android:icon="@drawable/ic_launcher_background"/>
+  </group>
+
+  <group android:id="@+id/menu_bottom"
+         android:checkableBehavior="none"   >
+      <item android:title="@string/sobre"
+          android:id="@+id/nav_item_sobre"
+          android:icon="@drawable/ic_launcher_background"/>
+
+  </group>
+
+</menu>
