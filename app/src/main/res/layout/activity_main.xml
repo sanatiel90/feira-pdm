@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<!--Layout do menu lateral, precisa ficar como base-->
 <android.support.v4.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,6 +7,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
+
+
+    <!--Layout que coordena o movimento e interacao das views filhas, precisa ser usado para criar animacoes na rolagem
+        fica como container base-->
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <!--AppBarLayout: subclasse de LinearLayout; cria a app bar, espaco q fica entre a Toolbar e os componentes como as tabs-->
+    <!--controla os scrolls dos filhos(nesse caso a toolbar), permitindo criar o efeito de expandir e diminuir a toolbar conforme a rolagem-->
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+             <!--incluindo toolbar-->
+            <include layout="@layout/toolbar" />
+
+
+
+        </android.support.design.widget.AppBarLayout>
+        <FrameLayout
+            android:id="@+id/layoutFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+       <!-- <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>-->
+
+
+        <!--floating button(botao + no canto da tela)-->
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginBottom="@dimen/fab_margin"
+            android:layout_marginRight="@dimen/fab_margin"
+            android:src="@android:drawable/ic_input_add"/>
+
+
+    </android.support.design.widget.CoordinatorLayout>
+
+
+
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -16,7 +66,7 @@
     android:orientation="vertical"
     tools:context="br.com.sanatielbarros.appfeirapdm.activities.MainActivity">
 
-    <include layout="@layout/toolbar" />
+
 
 
 </LinearLayout>

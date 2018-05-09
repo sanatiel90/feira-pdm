@@ -1,0 +1,84 @@
+package br.com.sanatielbarros.appfeirapdm.fragments
+
+import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.support.v7.widget.DefaultItemAnimator
+import android.support.v7.widget.LinearLayoutManager
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import br.com.sanatielbarros.appfeirapdm.R
+import br.com.sanatielbarros.appfeirapdm.adapter.ProdutoAdapter
+import br.com.sanatielbarros.appfeirapdm.domain.Produto
+import br.com.sanatielbarros.appfeirapdm.domain.ProdutoService
+import br.com.sanatielbarros.appfeirapdm.extensions.toast
+import br.com.sanatielbarros.appfeirapdm.utils.AndroidUtils
+import kotlinx.android.synthetic.main.fragment_produtos.*
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.toast
+import org.jetbrains.anko.uiThread
+
+//import org.jetbrains.anko.
+
+
+class ProdutosFragment : Fragment() {
+
+    //array q vai conter os produtos, buscados num web service
+    protected var produtos = listOf<Produto>()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
+
+    //cria a view do fragment
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        //infla o layout da fragment de produtos e retorna
+        val view = inflater?.inflate(R.layout.fragment_produtos, container, false)
+        return view
+    }
+
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        //views
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.itemAnimator = DefaultItemAnimator()
+        recyclerView.setHasFixedSize(true)
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        taskProdutos()
+    }
+
+    //metodo que faz a requisicao ao web service e atualiza a lista de carros na tela
+    fun taskProdutos(){
+        //verificar se existe conexao com a net
+        if(!AndroidUtils.isNetworkAvaliable(context)){
+            toast("Não há conexão com a internet")
+        }
+        doAsync {
+            //recupera a lista de produtos do Web Service
+            produtos = ProdutoService.getProdutos()
+
+            uiThread{
+                //atualiza o Recycler View (listagem de produtos) na tela usando o adapter de ProdutoAdapter
+                //(um adapter informa a quantidade de elementos da lista e cria uma view para cada linha, ou seja, cada produto)
+                //esse adapter recebe a lista de produtos e uma funcao lambda para ser o evento de clique no produto da lista
+                recyclerView.adapter = ProdutoAdapter(produtos) {onClickProduto()}
+            }
+
+        }
+    }
+
+
+    fun onClickProduto(){
+        toast("detalhes do produto")
+    }
+
+
+
+
+}

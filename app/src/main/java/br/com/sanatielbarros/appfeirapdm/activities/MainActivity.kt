@@ -7,8 +7,10 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.MenuItem
 import br.com.sanatielbarros.appfeirapdm.R
+import br.com.sanatielbarros.appfeirapdm.extensions.addFragment
 import br.com.sanatielbarros.appfeirapdm.extensions.setupToolbar
 import br.com.sanatielbarros.appfeirapdm.extensions.toast
+import br.com.sanatielbarros.appfeirapdm.fragments.ProdutosFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -19,6 +21,18 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         setContentView(R.layout.activity_main)
         setupToolbar(R.id.toolbar) //config a toolbar
         setupNavDrawer()
+        fab.setOnClickListener{
+            toast("Novo produto")
+        }
+
+        if (savedInstanceState == null){
+            val ft = supportFragmentManager.beginTransaction()
+            val fragProdutos = ProdutosFragment()
+            ft.add(R.id.layoutFragment, fragProdutos, "ProdutosFragment")
+            ft.commit()
+            //addFragment(R.id.container, ProdutosFragment())
+        }
+
     }
 
     //configura o navigation drawer
