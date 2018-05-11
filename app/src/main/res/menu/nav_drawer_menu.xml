@@ -6,36 +6,36 @@
     <item android:title="@string/home"
         android:checked="true"
         android:id="@+id/nav_item_home"
-        android:icon="@drawable/ic_launcher_background"/>
+        android:icon="@drawable/ic_menu_home"/>
 
     <item android:title="@string/frutas"
           android:id="@+id/nav_item_frutas"
-          android:icon="@drawable/ic_launcher_background"/>
+          android:icon="@drawable/ic_action_name"/>
 
     <item android:title="@string/verduras"
           android:id="@+id/nav_item_verduras"
-        android:icon="@drawable/ic_launcher_background"/>
+        android:icon="@drawable/ic_menu_verdura"/>
 
 
     <item android:title="@string/carnes"
         android:id="@+id/nav_item_carnes"
-        android:icon="@drawable/ic_launcher_background"/>
+        android:icon="@drawable/ic_menu_carne"/>
 
 
     <item android:title="@string/graos"
           android:id="@+id/nav_item_graos"
-        android:icon="@drawable/ic_launcher_background"/>
+        android:icon="@drawable/ic_menu_grao"/>
 
     <item android:title="@string/outros"
         android:id="@+id/nav_item_outros"
-        android:icon="@drawable/ic_launcher_background"/>
+        android:icon="@drawable/ic_menu_outro"/>
   </group>
 
   <group android:id="@+id/menu_bottom"
          android:checkableBehavior="none"   >
       <item android:title="@string/sobre"
           android:id="@+id/nav_item_sobre"
-          android:icon="@drawable/ic_launcher_background"/>
+          android:icon="@drawable/ic_menu_sobre"/>
 
   </group>
 
