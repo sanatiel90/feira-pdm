@@ -10,5 +10,7 @@ enum class CategoriaProduto(val string: Int) {
     frutas(R.string.frutas),
     verduras(R.string.verduras),
     graos(R.string.graos),
-    carnes(R.string.carnes)
+    carnes(R.string.carnes),
+    outros(R.string.outros),
+    todas(R.string.todas)
 }

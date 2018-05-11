@@ -8,13 +8,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import br.com.sanatielbarros.appfeirapdm.R
+import br.com.sanatielbarros.appfeirapdm.activities.ProdutoDetalheActivity
 import br.com.sanatielbarros.appfeirapdm.adapter.ProdutoAdapter
+import br.com.sanatielbarros.appfeirapdm.domain.CategoriaProduto
 import br.com.sanatielbarros.appfeirapdm.domain.Produto
 import br.com.sanatielbarros.appfeirapdm.domain.ProdutoService
 import br.com.sanatielbarros.appfeirapdm.extensions.toast
 import br.com.sanatielbarros.appfeirapdm.utils.AndroidUtils
 import kotlinx.android.synthetic.main.fragment_produtos.*
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import org.jetbrains.anko.uiThread
 
@@ -23,11 +26,19 @@ import org.jetbrains.anko.uiThread
 
 class ProdutosFragment : Fragment() {
 
+    //var privada da Enum CategoriaProduto, vai receber umas das categorias listadas la; a categoria todas é pra indicar mostrar todos os produtos
+    //independente da categoria
+    private var categoria: CategoriaProduto = CategoriaProduto.todas
+
     //array q vai conter os produtos, buscados num web service
     protected var produtos = listOf<Produto>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //le parametro enviado pelo Bundle
+        if(arguments != null){
+            categoria = arguments.getSerializable("categoria") as CategoriaProduto
+        }
 
     }
 
@@ -61,21 +72,21 @@ class ProdutosFragment : Fragment() {
         }
         doAsync {
             //recupera a lista de produtos do Web Service
-            produtos = ProdutoService.getProdutos()
+            produtos = ProdutoService.getProdutos(categoria)
 
             uiThread{
                 //atualiza o Recycler View (listagem de produtos) na tela usando o adapter de ProdutoAdapter
                 //(um adapter informa a quantidade de elementos da lista e cria uma view para cada linha, ou seja, cada produto)
                 //esse adapter recebe a lista de produtos e uma funcao lambda para ser o evento de clique no produto da lista
-                recyclerView.adapter = ProdutoAdapter(produtos) {onClickProduto()}
+                recyclerView.adapter = ProdutoAdapter(produtos) {onClickProduto(it)}
             }
 
         }
     }
 
-
-    fun onClickProduto(){
-        toast("detalhes do produto")
+    //evento de clique no produto da lista
+    fun onClickProduto(produto: Produto){
+        activity.startActivity<ProdutoDetalheActivity>("produto" to produto)
     }
 
 

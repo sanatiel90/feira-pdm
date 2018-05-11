@@ -14,8 +14,20 @@ object ProdutoService {
     //endpoint base da API a ser acessada
     private val BASE_URL = "https://web-service-pdm.herokuapp.com/api/v1"
 
-    fun getProdutos(): List<Produto>{
-            val url = "$BASE_URL/products"
+    fun getProdutos(categoria: CategoriaProduto): List<Produto>{
+        Log.d(TAG, "CATEGORIA PARAM: "+categoria.name)
+
+        val url: String
+
+        if(categoria.name.equals("todas")){
+            //pegando todos os produtos ordenados por data de cadastro descendente (últimos produtos cadastrados)
+            url = "$BASE_URL/products?order=created_at,desc"
+
+        }else{
+            //se for informado uma categoria, pegar so os produtos da categoria
+            url = "$BASE_URL/products?where[categoria]=${categoria.name}"
+        }
+
             Log.d(TAG, url)
 
             //json com o resultado da requisicao (a classe HttpHelper faz as requisicoes usando a lib okhttp)

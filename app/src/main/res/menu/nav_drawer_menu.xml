@@ -3,6 +3,11 @@
   <group android:id="@+id/menu_top"
       android:checkableBehavior="single">
 
+    <item android:title="@string/home"
+        android:checked="true"
+        android:id="@+id/nav_item_home"
+        android:icon="@drawable/ic_launcher_background"/>
+
     <item android:title="@string/frutas"
           android:id="@+id/nav_item_frutas"
           android:icon="@drawable/ic_launcher_background"/>
@@ -19,6 +24,10 @@
 
     <item android:title="@string/graos"
           android:id="@+id/nav_item_graos"
+        android:icon="@drawable/ic_launcher_background"/>
+
+    <item android:title="@string/outros"
+        android:id="@+id/nav_item_outros"
         android:icon="@drawable/ic_launcher_background"/>
   </group>
 

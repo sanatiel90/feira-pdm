@@ -7,12 +7,15 @@ import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.MenuItem
 import br.com.sanatielbarros.appfeirapdm.R
+import br.com.sanatielbarros.appfeirapdm.domain.CategoriaProduto
 import br.com.sanatielbarros.appfeirapdm.extensions.addFragment
 import br.com.sanatielbarros.appfeirapdm.extensions.setupToolbar
 import br.com.sanatielbarros.appfeirapdm.extensions.toast
 import br.com.sanatielbarros.appfeirapdm.fragments.ProdutosFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
+
+import org.jetbrains.anko.startActivity
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -52,20 +55,28 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     //trata evento de click no Navigation Drawer
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
+            R.id.nav_item_home -> {
+                toast("Você está na página inicial")
+            }
+
             R.id.nav_item_frutas -> {
-                toast("Frutas")
+                startActivity<ProdutosActivity>("categoria" to CategoriaProduto.frutas)
             }
 
             R.id.nav_item_verduras -> {
-                toast("Verduras")
+                startActivity<ProdutosActivity>("categoria" to CategoriaProduto.verduras)
             }
 
             R.id.nav_item_graos -> {
-                toast("Grãos")
+                startActivity<ProdutosActivity>("categoria" to CategoriaProduto.graos)
             }
 
             R.id.nav_item_carnes -> {
-                toast("Carnes")
+                startActivity<ProdutosActivity>("categoria" to CategoriaProduto.carnes)
+            }
+
+            R.id.nav_item_outros -> {
+                startActivity<ProdutosActivity>("categoria" to CategoriaProduto.outros)
             }
 
             R.id.nav_item_sobre -> {
