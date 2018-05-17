@@ -13,6 +13,10 @@
     <string name="home">Home</string>
     <string name="todas">Todas</string>
     <string name="outros">Outros</string>
+    <string name="ok">OK</string>
+    <string name="msg_sobre">Aplicativo desenvolvido por Sanatiel Barros, Alyson Brito e Samuel Porto</string>
+    <string name="menu_editar">Editar</string>
+    <string name="menu_deletar">Deletar</string>
 
 
 </resources>

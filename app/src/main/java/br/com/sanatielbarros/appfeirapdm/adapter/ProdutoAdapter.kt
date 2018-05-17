@@ -39,7 +39,7 @@ class ProdutoAdapter(val produtos: List<Produto>, val onClick: (Produto) -> Unit
         with(view){
             //atualiza dados do produto
             txtNomeProduto.text = produto.nome
-            txtPreco.text =  "Preço: R$ "+produto.preco.toString()
+            txtPreco.text =  "Preço: "+produto.preco.toString()
             txtLocal.text = "Local: "+produto.local
             //add evento de click na linha
             setOnClickListener { onClick(produto) }

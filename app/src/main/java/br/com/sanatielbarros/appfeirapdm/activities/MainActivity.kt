@@ -3,10 +3,14 @@ package br.com.sanatielbarros.appfeirapdm.activities
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentTransaction
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.MenuItem
 import br.com.sanatielbarros.appfeirapdm.R
+import br.com.sanatielbarros.appfeirapdm.activities.dialogs.AboutDialog
+import br.com.sanatielbarros.appfeirapdm.adapter.TabsAdapter
 import br.com.sanatielbarros.appfeirapdm.domain.CategoriaProduto
 import br.com.sanatielbarros.appfeirapdm.extensions.addFragment
 import br.com.sanatielbarros.appfeirapdm.extensions.setupToolbar
@@ -14,6 +18,7 @@ import br.com.sanatielbarros.appfeirapdm.extensions.toast
 import br.com.sanatielbarros.appfeirapdm.fragments.ProdutosFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
+import org.jetbrains.anko.alert
 
 import org.jetbrains.anko.startActivity
 
@@ -24,18 +29,19 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         setContentView(R.layout.activity_main)
         setupToolbar(R.id.toolbar) //config a toolbar
         setupNavDrawer()
+        setupViewPagerTabs()
         fab.setOnClickListener{
             toast("Novo produto")
         }
 
-        if (savedInstanceState == null){
+       /* if (savedInstanceState == null){
             val ft = supportFragmentManager.beginTransaction()
             val fragProdutos = ProdutosFragment()
             ft.add(R.id.layoutFragment, fragProdutos, "ProdutosFragment")
             ft.commit()
             //addFragment(R.id.container, ProdutosFragment())
         }
-
+        */
     }
 
     //configura o navigation drawer
@@ -80,11 +86,34 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
 
             R.id.nav_item_sobre -> {
-                toast("Sobre")
+                val aboutDialog = AboutDialog()
+                aboutDialog.show(fragmentManager, "dialog_about")
+
+                /*USO COM LIB ANKO
+                alert("Aplicativo desenvolvido por Sanatiel Barros, Alyson Brito e Samuel Porto") {
+                    positiveButton(R.string.ok){
+                    }
+                }.show()*/
             }
         }
         //fecha o menu depois de tratar o evento
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
+
+
+    //setando tabs
+    fun setupViewPagerTabs(){
+        //configurando componente viewPager(pegue pelo id via KotlinExtensions)
+        //manter na memoria +1 tab alem da selecionada (2 tabs no total)
+        viewPager.offscreenPageLimit = 1
+        //atribuindo um adapter (que contem o conteudo)
+        viewPager.adapter = TabsAdapter(context, supportFragmentManager)
+        //atribuindo o viewpager à tablayout
+        tabLayout.setupWithViewPager(viewPager)
+
+
+
+    }
+
 }

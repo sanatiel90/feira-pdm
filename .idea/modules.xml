@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AppFeiraPDM.iml" filepath="$PROJECT_DIR$/AppFeiraPDM.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/feira-pdm.iml" filepath="$PROJECT_DIR$/feira-pdm.iml" />
+      <module fileurl="file://C:\Users\Sanatiel\AndroidStudioProjects\AppFeiraPDM\feira-pdm.iml" filepath="C:\Users\Sanatiel\AndroidStudioProjects\AppFeiraPDM\feira-pdm.iml" />
     </modules>
   </component>
 </project>
