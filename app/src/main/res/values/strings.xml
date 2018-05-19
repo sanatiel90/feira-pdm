@@ -17,6 +17,12 @@
     <string name="msg_sobre">Aplicativo desenvolvido por Sanatiel Barros, Alyson Brito e Samuel Porto</string>
     <string name="menu_editar">Editar</string>
     <string name="menu_deletar">Deletar</string>
+    
+    <string name="nome">Nome</string>
+    <string name="local">Local</string>
+    <string name="preco">Preço</string>
+    <string name="categoria">Categoria</string>
+    <string name="cadastrar">Cadastrar</string>
 
 
 </resources>

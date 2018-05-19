@@ -1,10 +1,7 @@
 package br.com.sanatielbarros.appfeirapdm.activities
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.NavigationView
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentTransaction
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.MenuItem
@@ -12,14 +9,10 @@ import br.com.sanatielbarros.appfeirapdm.R
 import br.com.sanatielbarros.appfeirapdm.activities.dialogs.AboutDialog
 import br.com.sanatielbarros.appfeirapdm.adapter.TabsAdapter
 import br.com.sanatielbarros.appfeirapdm.domain.CategoriaProduto
-import br.com.sanatielbarros.appfeirapdm.extensions.addFragment
 import br.com.sanatielbarros.appfeirapdm.extensions.setupToolbar
 import br.com.sanatielbarros.appfeirapdm.extensions.toast
-import br.com.sanatielbarros.appfeirapdm.fragments.ProdutosFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
-import org.jetbrains.anko.alert
-
 import org.jetbrains.anko.startActivity
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -31,7 +24,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         setupNavDrawer()
         setupViewPagerTabs()
         fab.setOnClickListener{
-            toast("Novo produto")
+            startActivity<AddProductActivity>()
         }
 
        /* if (savedInstanceState == null){
