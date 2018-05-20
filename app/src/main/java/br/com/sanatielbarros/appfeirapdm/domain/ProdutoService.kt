@@ -2,6 +2,7 @@ package br.com.sanatielbarros.appfeirapdm.domain
 
 import android.util.Log
 import br.com.sanatielbarros.appfeirapdm.extensions.fromJson
+import br.com.sanatielbarros.appfeirapdm.extensions.toJson
 import br.com.sanatielbarros.appfeirapdm.utils.HttpHelper
 
 /**
@@ -36,6 +37,13 @@ object ProdutoService {
             val produtos = fromJson<List<Produto>>(json)
             Log.d(TAG,"${produtos.size} produtos encontrados")
             return produtos
+    }
+
+    fun save(produto: Produto): Response {
+        val url = "$BASE_URL/products"
+        val json = HttpHelper.post(url, produto.toJson())
+        val response = fromJson<Response>(json)
+        return response
     }
 
 

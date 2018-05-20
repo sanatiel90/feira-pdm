@@ -1,9 +1,7 @@
 package br.com.sanatielbarros.appfeirapdm.utils
 
-import okhttp3.MediaType
-import okhttp3.OkHttpClient
 import android.util.Log
-import okhttp3.Request
+import okhttp3.*
 import java.io.IOException
 
 /**
@@ -25,6 +23,26 @@ object HttpHelper {
         //cria uma requisicao GET
         val request = Request.Builder().url(url).get().build()
         //faz a req GET e retorna o json de resposta
+        return getJson(request)
+    }
+
+    //POST
+    fun post(url: String, json: String): String {
+        log("HttpHelper.post: $url > $json")
+        val body = RequestBody.create(JSON, json)
+        val request = Request.Builder().url(url).post(body).build()
+        return getJson(request)
+    }
+
+    //POST com parâmetros(form-urlencoded)
+    fun postForm(url: String, params: Map<String, String>): String {
+        log("HttpHelper.postForm: $url > $params")
+        val builder = FormBody.Builder()
+        for ((key, value) in params) {
+            builder.add(key, value)
+        }
+        val body = builder.build()
+        val request = Request.Builder().url(url).post(body).build()
         return getJson(request)
     }
 
